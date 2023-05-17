@@ -1,0 +1,4 @@
+I = imread('mandril_color.png');
+H = fspecial('gaussian', [3 3], 4); 
+I_smooth = imfilter(I,H); figure; imshow(I_smooth);
+I_sharp = imsharpen(I_smooth,'Radius',i,'Amount',2); figure; imshow(I_sharp);
