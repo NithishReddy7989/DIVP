@@ -1,0 +1,32 @@
+close all; clear all; clc; 
+image= imread('peppers.png');
+
+%Split into RGB Channels
+
+Red = image(:,:,1);
+Green = image(:,:,2);
+Blue = image(:,:,3);
+
+%Get histValues for each channel
+
+[yRed, x] = imhist(Red); [yGreen, x] = imhist(Green); [yBlue, x] = imhist(Blue);
+
+% display bar histogram
+
+figure; imhist(Red); figure; imhist(Green); figure; imhist(Blue);
+
+%Plot them together in one plot
+figure; plot(x, yRed, 'Red', x, yGreen, 'Green', x, yBlue, 'Blue');
+% Histogram Equalization processing of input image 
+
+% Contrast adjustment
+
+pout = imread('pout.tif');
+stretched_Image = imadjust(pout, stretchlim(pout, [0.05, 0.95]),[]);
+pout_imadjust = imadjust(pout); figure; imhist(stretched_Image); 
+
+pout_histeq= histeq(pout); 
+
+montage({pout,pout_imadjust,stretched_Image,pout_histeq},'Size', [1 4]);
+title("Original Image and Enhanced Images using imadjust, histstretch, and histeq");
+
