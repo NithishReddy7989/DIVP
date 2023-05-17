@@ -1,0 +1,6 @@
+
+	clc; clear;
+         I = imread('peppers.png'); 
+              figure;imshow(I);
+              Gray=im2gray(I)
+              figure;imshow(Gray);
