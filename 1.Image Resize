@@ -1,0 +1,5 @@
+clc;clear;close all;
+          Img = imread('coins.png'); 
+figure; imshow(Img);
+resizedimage = imresize(Img,[100 100]);
+imshow(resizedimage);
