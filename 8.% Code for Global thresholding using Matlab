@@ -1,0 +1,17 @@
+close all; clear all; clc;
+f=imread('coins.png');
+ 
+count=0;
+T=mean2(f);
+done=false;
+while~done
+    count=count+1;
+    g=f>T;
+    Tnext=0.5*(mean(f(g))+mean(f(~g)));
+    done=abs(T-Tnext)<0.5;
+    T=Tnext;
+end
+g=im2bw(f,T/255);
+figure(1),imshow(f);
+figure(2),imhist(f);
+figure(3),imshow(g);
